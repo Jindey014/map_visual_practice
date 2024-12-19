@@ -13,8 +13,8 @@ df_reshaped = df_reshaped.loc[:, ~df_reshaped.columns.str.contains('^Unnamed')]
 st.title("Population Dashboard")
 
 # Get unique years and states
-year_list = list(df_reshaped.year.unique())[::-1]
-state_list = ["All"] + list(df_reshaped.states.unique())
+year_list = sorted(df_reshaped['year'].dropna().unique().tolist(), reverse=True)  # Remove NaN and sort
+state_list = ["All"] + sorted(df_reshaped['states'].dropna().unique().tolist())   # Remove NaN and sort
 
 # Sidebar selectors
 with st.sidebar:

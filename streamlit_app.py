@@ -118,8 +118,9 @@ with st.expander('Update Record'):
         population = int(selected_record.iloc[0]['population']) if selected_record.iloc[0]['population'] is not None else 0
         
         # Display the fields in the form
-        st.text_input("State Name", value=state_name, disabled=True)  # Read-only
-        st.text_input("State Code", value=state_code, disabled=True)  # Read-only
+        state_name = update_form.text_input("State Name", value=state_name, disabled=True) 
+        state_code = update_form.text_input("State Code", value=state_code, disabled=True)
+        year = update_form.selectbox("Installation Year", year_list, index=year_list.index(selected_year) if selected_year in year_list else 0)
         new_population = update_form.number_input("Population", min_value=0, value=population)
 
         update_record = update_form.form_submit_button(label="Update Record")
